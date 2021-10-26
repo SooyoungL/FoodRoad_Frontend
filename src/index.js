@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import "./index.css";
-import KakaoMap from "./pages/KakaoMap";
+import FoodRoad from "./pages/FoodRoad";
 
 ReactDOM.render(
   <>
-    <KakaoMap />
+    <FoodRoad />
   </>,
   document.getElementById("root")
 );
