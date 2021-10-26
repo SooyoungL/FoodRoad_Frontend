@@ -15,18 +15,27 @@ export default function Home() {
   return(
     <div>
       <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 10 }}>
+        <Grid item xs={2}>
           <Item>1</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={2}>
           <Item>2</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={2}>
           <Item>3</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={2}>
           <Item>4</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>1</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>2</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>3</Item>
         </Grid>
       </Grid>
     </Box>
