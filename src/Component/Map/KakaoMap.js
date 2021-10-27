@@ -1,6 +1,6 @@
 import React from "react";
 // import "./kakaomap.css";
-import Map from "../Component/Map/Map";
+import Map from "./Map";
 
 function KakaoMap() {
   return (
