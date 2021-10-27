@@ -5,6 +5,7 @@ const HeaderSpace = styled.div`
   height: 100px;
   text-align: center;
   line-height: 100px;
+  margin-bottom: 25px;
 `
 
 const Title = styled.div`
