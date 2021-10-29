@@ -56,5 +56,5 @@ export default function Map(props) {
     });
   };
 
-  return <div id="map" style={{ width: "82vw", height: "100vh" }}></div>;
+  return <div id="map" style={{ width: "82vw", height: "85vh" }}></div>;
 }
