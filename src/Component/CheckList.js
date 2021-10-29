@@ -12,6 +12,11 @@ import axios from 'axios'
 export default function CheckList(props) {
   const [checked, setChecked] = React.useState(['한식','중식']);
 
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+  let foo = params.get('param');
+  console.log(foo)
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];

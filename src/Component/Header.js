@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderSpace = styled.div`
   height: 100px;
@@ -18,7 +19,7 @@ const Title = styled.div`
 export default function Header() {
   return(
     <HeaderSpace>
-        <Title>FoodRoad</Title>
+        <Link to="/" style={{ textDecoration: 'none' }}><Title>FoodRoad</Title></Link>
     </HeaderSpace>
   )
 }
