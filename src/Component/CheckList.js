@@ -28,11 +28,16 @@ export default function CheckList(props) {
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
-    
+
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      if(newChecked.length == 2){
+        alert("하나 이상의 카테고리를 선택해야 합니다.")
+        return;
+      }else{
+        newChecked.splice(currentIndex, 1);
+      }
     }
     // Update the checked state
     setChecked(newChecked);
