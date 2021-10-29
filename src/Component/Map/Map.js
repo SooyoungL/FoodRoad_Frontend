@@ -11,51 +11,50 @@ export default function Map(props) {
     let container = document.getElementById("map");
     let options = {
       center: new kakao.maps.LatLng(37.508690392047, 127.05618275253),
-      level: 5,
+      level: 4
     };
 
     //map
     const map = new kakao.maps.Map(container, options);
     data.forEach((el) => {
       // 마커를 생성합니다
-      const marker = new kakao.maps.Marker({        
+      let marker = new kakao.maps.Marker({        
         //마커가 표시 될 지도
         map: map,
         //마커가 표시 될 위치
         position: new kakao.maps.LatLng(Number(el.lng), Number(el.lat)),
       });
+
+      var iwContent = '<div class="wrap">' + 
+                    '    <div class="info">' + 
+                    '        <h4 class="title">' + 
+                    '              <a href="https://place.map.kakao.com/'+el.id+'" target="_blank">'+el.res_name + '</a>'+
+                    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                    '        </h4>' + 
+                    '        <div class="body">' + 
+                    '            <div class="category">'+ el.category + '</div>'+'<br>'+
+                    '            <div class="address">' + 
+                    '                <div class="ellipsis">'+el.address+'</div>' + 
+                    '            </div>' + 
+                    '        </div>' + 
+                    '    </div>' +    
+                    '</div>',
+                    iwRemoveable = true;
+
       // 마커에 표시할 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({
-        content: el.res_name, // 인포윈도우에 표시할 내용
+          content : iwContent,
+          removable : iwRemoveable
+      });
+      
+      // 마커에 클릭이벤트를 등록합니다
+      kakao.maps.event.addListener(marker, 'click', function() {
+            // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);  
       });
 
-      // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-      // 이벤트 리스너로는 클로저를 만들어 등록합니다
-      // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-      kakao.maps.event.addListener(
-        marker,
-        "mouseover",
-        makeOverListener(map, marker, infowindow)
-      );
-      kakao.maps.event.addListener(
-        marker,
-        "mouseout",
-        makeOutListener(infowindow)
-      );
+      
     });
-    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-    function makeOverListener(map, marker, infowindow) {
-      return function () {
-        infowindow.open(map, marker);
-      };
-    }
-
-    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-    function makeOutListener(infowindow) {
-      return function () {
-        infowindow.close();
-      };
-    }
   };
 
   return <div id="map" style={{ width: "82vw", height: "100vh" }}></div>;
