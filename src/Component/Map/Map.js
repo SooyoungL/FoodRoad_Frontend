@@ -1,6 +1,5 @@
 /*global kakao */
 import React, { useEffect } from "react";
-import { markerdata } from "../../data/markerData";
 
 export default function Map(props) {
   useEffect(() => {
@@ -22,7 +21,7 @@ export default function Map(props) {
         //마커가 표시 될 지도
         map: map,
         //마커가 표시 될 위치
-        position: new kakao.maps.LatLng(Number(el.lng), Number(el.lat)),
+        position: new kakao.maps.LatLng(Number(el.lat), Number(el.lng)),
       });
 
       var iwContent = '<div class="wrap">' + 
@@ -35,7 +34,7 @@ export default function Map(props) {
                     '            <div class="category">'+ el.category + '</div>'+'<br>'+
                     '            <div class="address">' + 
                     '                <div class="ellipsis">'+el.address+'</div>' + 
-                    '            </div>' + 
+                    '            </div>' + '<br>' +
                     '        </div>' + 
                     '    </div>' +    
                     '</div>',
