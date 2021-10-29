@@ -6,11 +6,10 @@ const HeaderSpace = styled.div`
   height: 100px;
   text-align: center;
   line-height: 100px;
-  margin-bottom: 25px;
 `
 
 const Title = styled.div`
-  font-size: 55px;
+  font-size: 75px;
   font-weight: 700;
   color: #532481;
   font-family: 'Bebas Neue', cursive;
