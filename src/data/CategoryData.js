@@ -16,7 +16,7 @@ export const CategoryList = [
       imgSrc: "https://static.hubzum.zumst.com/hubzum/2018/08/02/13/a2da0a701a30422695e1d117deaa67a4_780x0c.jpg"
     },
     {
-      title: "아시안 음식",
+      title: "아시아음식",
       imgSrc: "https://t1.daumcdn.net/cfile/tistory/991F28465C3887B62A"
     },
     {
