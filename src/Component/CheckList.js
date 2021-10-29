@@ -11,6 +11,11 @@ import IconButton from '@mui/material/IconButton';
 export default function CheckList() {
   const [checked, setChecked] = React.useState([0]);
 
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+  let foo = params.get('param');
+  console.log(foo)
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
