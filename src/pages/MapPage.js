@@ -15,20 +15,27 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function MapPage() {
+
+// const [checked, setChecked] = React.useState(['한식','중식']);
+// let [markerdata, setMarkerData] = React.useState([]);
+
+const MapPage = (props) => {
+  let [markerdata, setMarkerData] = React.useState([]);
   return (
     <div className="mapPage">
         <Header />
-        <div class>
+        <div className="mapArea">
           <Grid container spacing={2}>
-            <Grid item xs={9}>
-              <Item><KakaoMap /></Item>
+            <Grid item xs={10}>
+              <Item><KakaoMap data={markerdata}/></Item>
             </Grid>
-            <Grid item xs={3}>
-              <Item><CheckList /></Item>
+            <Grid item xs={2}>
+              <Item><CheckList changeData={setMarkerData}/></Item>
             </Grid>
           </Grid>
         </div>
     </div>
   );
 }
+
+export default (MapPage);

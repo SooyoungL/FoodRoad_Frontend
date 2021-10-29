@@ -1,4 +1,4 @@
-export const markerdata = [
+export let markerdata = [
     {
       title: "부타이",
       lat: 37.50637640001562, 

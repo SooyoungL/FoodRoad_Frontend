@@ -2,11 +2,11 @@
 import React, { useEffect } from "react";
 import { markerdata } from "../../data/markerData";
 
-export default function Map() {
+export default function Map(props) {
   useEffect(() => {
     mapscript();
-  }, []);
-
+  }, [props]);
+  let data = props.data;
   const mapscript = () => {
     let container = document.getElementById("map");
     let options = {
@@ -16,17 +16,17 @@ export default function Map() {
 
     //map
     const map = new kakao.maps.Map(container, options);
-    markerdata.forEach((el) => {
+    data.forEach((el) => {
       // 마커를 생성합니다
-      const marker = new kakao.maps.Marker({
+      const marker = new kakao.maps.Marker({        
         //마커가 표시 될 지도
         map: map,
         //마커가 표시 될 위치
-        position: new kakao.maps.LatLng(el.lat, el.lng),
+        position: new kakao.maps.LatLng(Number(el.lng), Number(el.lat)),
       });
       // 마커에 표시할 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({
-        content: el.title, // 인포윈도우에 표시할 내용
+        content: el.res_name, // 인포윈도우에 표시할 내용
       });
 
       // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -58,5 +58,5 @@ export default function Map() {
     }
   };
 
-  return <div id="map" style={{ width: "73vw", height: "100vh" }}></div>;
+  return <div id="map" style={{ width: "82vw", height: "100vh" }}></div>;
 }
