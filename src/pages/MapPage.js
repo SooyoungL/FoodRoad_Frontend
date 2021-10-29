@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import CheckList from "../Component/CheckList";
+import CheckList from "../Component/Map/CheckList";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

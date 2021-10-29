@@ -28,16 +28,11 @@ export default function CheckList(props) {
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
-
+    
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
-      if(newChecked.length == 2){
-        alert("하나 이상의 카테고리를 선택해야 합니다.")
-        return;
-      }else{
-        newChecked.splice(currentIndex, 1);
-      }
+      newChecked.splice(currentIndex, 1);
     }
     // Update the checked state
     setChecked(newChecked);
@@ -55,7 +50,7 @@ export default function CheckList(props) {
 
   const getData = (checkedRes) => {
   
-    axios.get("http://192.168.1.93:5000/foodroad", {
+    axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
                 category: checkedRes
               }      
