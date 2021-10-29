@@ -10,42 +10,63 @@ import IconButton from '@mui/material/IconButton';
 import axios from 'axios'
 
 export default function CheckList(props) {
-  const [checked, setChecked] = React.useState(['한식','중식']);
+  const [checked, setChecked] = React.useState([]);
 
-  let search = window.location.search;
-  let params = new URLSearchParams(search);
-  let foo = params.get('param');
-  console.log(foo)
+  React.useEffect(() => {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let mainCategoroy = params.get('param');
+
+    getData(mainCategoroy);
+    
+    const checkData = mainCategoroy.split(',');
+
+    setChecked(checkData);
+
+  },[])
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
-    const changeRes = (resData) => {
-      props.changeData(resData);
-    }
+
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      if(newChecked.length == 2){
+        alert("하나 이상의 카테고리를 선택해야 합니다.")
+        return;
+      }else{
+        newChecked.splice(currentIndex, 1);
+      }
     }
     // Update the checked state
     setChecked(newChecked);
 
     // convert array to String
     let checkedRes = newChecked.join(',');
-    
+
+    getData(checkedRes);
+
+  };
+  
+  const changeRes = (resData) => {
+    props.changeData(resData);
+  }
+
+  const getData = (checkedRes) => {
+  
     axios.get("http://192.168.1.93:5000/foodroad", {
               params: {
                 category: checkedRes
               }      
           })
           .then((response)=> {
-              changeRes(response.data)
+              changeRes(response.data);
           })
           .catch((error)=> {
               console.log(error);
-          })
-    };
+          });
+  }
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
