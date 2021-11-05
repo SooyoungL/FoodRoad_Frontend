@@ -4,6 +4,17 @@ import KakaoMap from "../Component/Map/KakaoMap";
 import Header from '../Component/Header'
 import axios from 'axios'
 import Loader from "../Component/Loader";
+import { styled } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 
 const AllPage = () => {
   const [loading, setLoading] = useState(null);
@@ -32,9 +43,9 @@ const AllPage = () => {
 
   if (loading) return <Loader type="spin" color="RGB 값" message={'로딩중'} />;
   return (
-    <div>
+    <div className="kakaomap">
         <Header />
-        <KakaoMap data={markerdata}/>
+        <Item><KakaoMap data={markerdata}/></Item>
     </div>
   );
 }
