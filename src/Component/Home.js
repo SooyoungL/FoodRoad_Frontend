@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme, img, logo }) => ({
     padding: theme.spacing(1),
     fontSize: 'x-large',
     fontWeight: 'bold',
-    height: 150,
+    height: '100%',
     position: 'relative',
     backgroundImage: `url(${img})`,
     backgroundSize: 'cover',
@@ -40,7 +40,7 @@ const Item = styled(Paper)(({ theme, img, logo }) => ({
 const CategoryTtile = c_styled.div`
   color: #fff;
   text-align: center;
-  line-height: 155px;  
+  line-height: 230px;  
   position: relative;
 `
 
@@ -51,6 +51,7 @@ const Category = c_styled.div`
 `
 
 export default function Home() {
+  
   const history = useHistory();
 
   const clickItem = (category) => {
@@ -65,7 +66,7 @@ export default function Home() {
   return(
     <Category>
       <Box sx={{ width: '100%' }}>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 7}}>
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 1}}>
           {CategoryList.map((obj, index) => {
             return (
               <Grid item xs ={3} key={index}>
@@ -76,7 +77,7 @@ export default function Home() {
             ) 
           })}
           <Grid item xs ={3}>
-                <Item img={'img/OJM_Mark.jpg'} logo={true}></Item>
+                <Item img={'img/OJM_Mark.png'} logo={true}></Item>
               </Grid>
         </Grid> 
       </Box>

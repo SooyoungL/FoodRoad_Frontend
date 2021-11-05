@@ -7,16 +7,22 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios'
+import Loader from '../Loader';
 
 export default function CheckList(props) {
   const [checked, setChecked] = React.useState([]);
   const [subCategories, setSub] = React.useState([]);
   const [mainCategory, setMain] = React.useState('');
+  const [loading, setLoading] = React.useState(null);
+
   React.useEffect(() => {
+
     let search = window.location.search;
     let params = new URLSearchParams(search);
-    setMain(params.get('param'))
+
+    setMain(params.get('param'));
     getSubCategory(params.get('param'));
+
   },[])
 
   const handleToggle = (value) => () => {
@@ -59,8 +65,11 @@ export default function CheckList(props) {
           });
   }
 
-  const getSubCategory = (c) => {
-    axios.get("http://127.0.0.1:5000/foodroad", {
+  const getSubCategory = async (c) => {
+
+    setLoading(true);
+
+    await axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
                 category:c 
               }      
@@ -85,7 +94,11 @@ export default function CheckList(props) {
           .catch((error)=> {
               console.log(error);
           });
+
+    setLoading(false);
   }
+
+  if (loading) return <Loader type="spin" color="RGB 값" message={'로딩중'} />;
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
