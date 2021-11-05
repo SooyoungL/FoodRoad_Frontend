@@ -7,7 +7,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios'
-import Loader from '../Loader';
 import styled from 'styled-components';
 
 const CategoryName = styled.div`
@@ -23,7 +22,6 @@ export default function CheckList(props) {
   const [checked, setChecked] = React.useState([]);
   const [subCategories, setSub] = React.useState([]);
   const [mainCategory, setMain] = React.useState('');
-  const [loading, setLoading] = React.useState(null);
 
   React.useEffect(() => {
 
@@ -60,8 +58,9 @@ export default function CheckList(props) {
     props.changeData(resData);
   }
 
-  const getData = (mainCategory, checkedRes) =>{
-    axios.get("http://127.0.0.1:5000/foodroad", {
+  const getData = async (mainCategory, checkedRes) =>{
+
+    await axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
                 category: mainCategory,
                 sub_category: checkedRes
@@ -73,11 +72,10 @@ export default function CheckList(props) {
           .catch((error)=> {
               console.log(error);
           });
+
   }
 
   const getSubCategory = async (c) => {
-
-    setLoading(true);
 
     await axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
@@ -104,11 +102,7 @@ export default function CheckList(props) {
           .catch((error)=> {
               console.log(error);
           });
-
-    setLoading(false);
   }
-
-  if (loading) return <Loader type="spin" color="RGB 값" message={'로딩중'} />;
 
   return (
     <CategoryList>
