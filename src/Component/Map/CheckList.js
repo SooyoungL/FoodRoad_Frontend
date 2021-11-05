@@ -1,4 +1,3 @@
-// ['한식', '양식', '중식', '일식', '아시아음식', '간식', '뷔페', '술집']
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -11,18 +10,17 @@ import axios from 'axios'
 
 export default function CheckList(props) {
   const [checked, setChecked] = React.useState([]);
-
+  const [subCategories, setSub] = React.useState([]);
+  const [mainCategory, setMain] = React.useState('');
   React.useEffect(() => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
-    let mainCategoroy = params.get('param');
-
-    getData(mainCategoroy);
-    
-    const checkData = mainCategoroy.split(',');
-
-    setChecked(checkData);
-
+    // mainCategory = params.get('param')
+    setMain(params.get('param'))
+    console.log('메인: ',params.get('param'))
+    // getData(mainCategoroy);
+    getSubCategory(params.get('param'));
+    // setChecked(checkData);
   },[])
 
   const handleToggle = (value) => () => {
@@ -39,8 +37,7 @@ export default function CheckList(props) {
 
     // convert array to String
     let checkedRes = newChecked.join(',');
-
-    getData(checkedRes);
+    getData(mainCategory, checkedRes);
 
   };
   
@@ -48,15 +45,31 @@ export default function CheckList(props) {
     props.changeData(resData);
   }
 
-  const getData = (checkedRes) => {
-  
+  const getData = (mainCategory, checkedRes) =>{
     axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
-                category: checkedRes
+                category: mainCategory,
+                sub_category: checkedRes
               }      
           })
           .then((response)=> {
               changeRes(response.data);
+              console.log(response)
+          })
+          .catch((error)=> {
+              console.log(error);
+          });
+  }
+
+  const getSubCategory = (c) => {
+    axios.get("http://127.0.0.1:5000/foodroad", {
+              params: {
+                category:c 
+                // sub_category: '서브카테고리'
+              }      
+          })
+          .then((response)=> {
+              setSub(response.data.sub_category);
           })
           .catch((error)=> {
               console.log(error);
@@ -65,7 +78,7 @@ export default function CheckList(props) {
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      {['한식', '양식', '중식', '일식', '아시아음식', '간식', '뷔페', '술집'].map((value) => {
+      {subCategories.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (

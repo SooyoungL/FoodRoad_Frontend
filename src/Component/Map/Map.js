@@ -27,7 +27,7 @@ export default function Map(props) {
       var iwContent = '<div class="wrap">' + 
                     '    <div class="info">' + 
                     '        <h4 class="title">' + 
-                    '              <a href="https://place.map.kakao.com/'+el.id+'" target="_blank">'+el.res_name + '</a>'+
+                    '              <a href="https://place.map.kakao.com/'+el.kakao_id+'" target="_blank">'+el.res_name + '</a>'+
                     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
                     '        </h4>' + 
                     '        <div class="body">' + 

@@ -15,10 +15,6 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
-// const [checked, setChecked] = React.useState(['한식','중식']);
-// let [markerdata, setMarkerData] = React.useState([]);
-
 const MapPage = (props) => {
   let [markerdata, setMarkerData] = React.useState([]);
   return (
