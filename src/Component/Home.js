@@ -77,8 +77,8 @@ export default function Home() {
             ) 
           })}
           <Grid item xs ={3}>
-                <Item img={'img/OJM_Mark.png'} logo={true}></Item>
-              </Grid>
+            <Item img={'img/OJM_Mark.png'} logo={true}></Item>
+          </Grid>
         </Grid> 
       </Box>
     </Category>
