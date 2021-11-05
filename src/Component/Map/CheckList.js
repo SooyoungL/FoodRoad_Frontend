@@ -14,6 +14,11 @@ const CategoryName = styled.div`
   font-size: x-large;
 `
 
+const CategoryList = styled.div`
+  overflow: scroll;
+  height: 1135px;
+`
+
 export default function CheckList(props) {
   const [checked, setChecked] = React.useState([]);
   const [subCategories, setSub] = React.useState([]);
@@ -106,35 +111,37 @@ export default function CheckList(props) {
   if (loading) return <Loader type="spin" color="RGB 값" message={'로딩중'} />;
 
   return (
-    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      <CategoryName>{mainCategory}</CategoryName>
-      {subCategories.map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+    <CategoryList>
+      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <CategoryName>{mainCategory}</CategoryName>
+        {subCategories.map((value) => {
+          const labelId = `checkbox-list-label-${value}`;
 
-        return (
-          <ListItem
-            key={value}
-            secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-              </IconButton>
-            }
-            disablePadding
-          >
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value}`} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+          return (
+            <ListItem
+              key={value}
+              secondaryAction={
+                <IconButton edge="end" aria-label="comments">
+                </IconButton>
+              }
+              disablePadding
+            >
+              <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+                <ListItemIcon>
+                  <Checkbox
+                    edge="start"
+                    checked={checked.indexOf(value) !== -1}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{ 'aria-labelledby': labelId }}
+                  />
+                </ListItemIcon>
+                <ListItemText id={labelId} primary={`${value}`} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+    </CategoryList>
   );
 }

@@ -8,12 +8,27 @@ export default function Map(props) {
   const mapscript = useCallback(() => {
     let container = document.getElementById("map");
     let options = {
-      center: new kakao.maps.LatLng(37.508690392047, 127.05618275253),
+      center: new kakao.maps.LatLng(37.5067578, 127.0599486),
       level: 4
     };
 
     //map
     const map = new kakao.maps.Map(container, options);
+
+    // center marker
+    var imageSrc = '/img/red_marker.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(40, 65), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(110, 60)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    markerPosition = new kakao.maps.LatLng(37.5067578, 127.0599486); // 마커가 표시될 위치입니다
+    var marker = new kakao.maps.Marker({
+      position: markerPosition,
+      image: markerImage // 마커이미지 설정 
+    });
+    
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
     data.forEach((el) => {
       // 마커를 생성합니다
       let marker = new kakao.maps.Marker({        
