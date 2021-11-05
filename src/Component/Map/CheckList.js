@@ -63,11 +63,24 @@ export default function CheckList(props) {
     axios.get("http://127.0.0.1:5000/foodroad", {
               params: {
                 category:c 
-                // sub_category: '서브카테고리'
               }      
           })
           .then((response)=> {
               setSub(response.data.sub_category);
+              setChecked(response.data.sub_category);
+              let subC = response.data.sub_category.join(',');
+              axios.get("http://127.0.0.1:5000/foodroad", {
+                    params: {
+                      category:c ,
+                      sub_category: subC
+                    }      
+                })
+                .then((response)=> {
+                    props.changeData(response.data);
+                })
+                .catch((error)=> {
+                    console.log(error);
+                });
           })
           .catch((error)=> {
               console.log(error);
