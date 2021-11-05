@@ -8,6 +8,11 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios'
 import Loader from '../Loader';
+import styled from 'styled-components';
+
+const CategoryName = styled.div`
+  font-size: x-large;
+`
 
 export default function CheckList(props) {
   const [checked, setChecked] = React.useState([]);
@@ -102,6 +107,7 @@ export default function CheckList(props) {
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+      <CategoryName>{mainCategory}</CategoryName>
       {subCategories.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 

@@ -22,15 +22,21 @@ export default function Map(props) {
         //마커가 표시 될 위치
         position: new kakao.maps.LatLng(Number(el.lat), Number(el.lng)),
       });
-
+      let link = el.kakao_id !== '' ? '<a href="https://place.map.kakao.com/'+el.kakao_id+'" target="_blank">' +el.res_name + '</a>': el.res_name;
+      let phone = el.phone !== '' ? '<p>'+el.phone+'</p>' : '';
+      let menu = el.menu !== '' ? '<p>'+el.menu+'</p>' : '';
+      let rating = el.menu !== '' ? '<p>'+'평점: '+el.rating+'/5'+'</p>' : '';
       var iwContent = '<div class="wrap">' + 
                     '    <div class="info">' + 
                     '        <h4 class="title">' + 
-                    '              <a href="https://place.map.kakao.com/'+el.kakao_id+'" target="_blank">'+el.res_name + '</a>'+
+                    '              '+link+
                     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
                     '        </h4>' + 
                     '        <div class="body">' + 
                     '            <div class="category">'+ el.category + '</div><br>'+
+                    '              '+phone+
+                    '              '+menu+
+                    '              '+rating+
                     '            <div class="address">' + 
                     '                <div class="ellipsis">'+el.address+'</div>' + 
                     '            </div><br>' +
