@@ -15,22 +15,21 @@ export default function CheckList(props) {
   React.useEffect(() => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
-    // mainCategory = params.get('param')
     setMain(params.get('param'))
-    console.log('메인: ',params.get('param'))
-    // getData(mainCategoroy);
     getSubCategory(params.get('param'));
-    // setChecked(checkData);
   },[])
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
-    
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      if(newChecked.length < 2){
+        alert('1개 이상의 카테고리를 선택해주세요.');
+      }else{
+        newChecked.splice(currentIndex, 1);
+      }
     }
     // Update the checked state
     setChecked(newChecked);
@@ -54,7 +53,6 @@ export default function CheckList(props) {
           })
           .then((response)=> {
               changeRes(response.data);
-              console.log(response)
           })
           .catch((error)=> {
               console.log(error);
