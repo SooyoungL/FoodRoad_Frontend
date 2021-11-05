@@ -1,12 +1,11 @@
 /*global kakao */
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 export default function Map(props) {
-  useEffect(() => {
-    mapscript();
-  }, [props]);
+
   let data = props.data;
-  const mapscript = () => {
+
+  const mapscript = useCallback(() => {
     let container = document.getElementById("map");
     let options = {
       center: new kakao.maps.LatLng(37.508690392047, 127.05618275253),
@@ -31,10 +30,10 @@ export default function Map(props) {
                     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
                     '        </h4>' + 
                     '        <div class="body">' + 
-                    '            <div class="category">'+ el.category + '</div>'+'<br>'+
+                    '            <div class="category">'+ el.category + '</div><br>'+
                     '            <div class="address">' + 
                     '                <div class="ellipsis">'+el.address+'</div>' + 
-                    '            </div>' + '<br>' +
+                    '            </div><br>' +
                     '        </div>' + 
                     '    </div>' +    
                     '</div>',
@@ -51,10 +50,12 @@ export default function Map(props) {
             // 마커 위에 인포윈도우를 표시합니다
             infowindow.open(map, marker);  
       });
-
-      
     });
-  };
+  },[data])  
 
+  useEffect(() => {
+    mapscript();
+  }, [props,mapscript]);
+  
   return <div id="map" style={{ width: "82vw", height: "85vh" }}></div>;
 }

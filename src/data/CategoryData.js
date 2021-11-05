@@ -16,12 +16,32 @@ export const CategoryList = [
       imgSrc: "https://static.hubzum.zumst.com/hubzum/2018/08/02/13/a2da0a701a30422695e1d117deaa67a4_780x0c.jpg"
     },
     {
+      title: "분식",
+      imgSrc: "http://cdn.ksilbo.co.kr/news/photo/202010/776329_444765_4426.jpg"
+    },
+    {
       title: "아시아음식",
       imgSrc: "https://t1.daumcdn.net/cfile/tistory/991F28465C3887B62A"
     },
     {
+      title: "패스트푸드",
+      imgSrc: "https://t1.daumcdn.net/cfile/tistory/9948DB3359C4C45E1A"
+    },
+    {
+      title: "치킨",
+      imgSrc: "https://cdn.mindgil.com/news/photo/202008/69676_4067_1639.jpg"
+    },
+    {
       title: "간식",
       imgSrc: "http://cdn.topdigital.com.au/news/photo/201906/img_7899_0.jpg"
+    },
+    {
+      title: "카페",
+      imgSrc: "https://e-name.kr/data/file/profile/3546831809_p910nwXs_7d7f7389e99e82718de4b74da2d9220e4fb9ad6e.jpg"
+    },
+    {
+      title: "다이어트",
+      imgSrc: "http://img.segye.com/content/image/2019/01/15/20190115822350.jpg"
     },
     {
       title: "뷔페",
@@ -29,6 +49,14 @@ export const CategoryList = [
     },
     {
       title: "술집",
-      imgSrc: "https://cdn.mindgil.com/news/photo/202008/69676_4067_1639.jpg"
+      imgSrc: "http://image.dongascience.com/Photo/2018/01/15160802935648[1].jpg"
+    },
+    {
+      title: "기타",
+      imgSrc: "http://img.rflogix.com/agm/main/1024/10_1_20200407112854.jpg"
+    },
+    {
+      title: "전체",
+      imgSrc: "https://shareditassets.s3.ap-northeast-2.amazonaws.com/production/uploads/post/featured_image/936/%EB%A7%9B%EC%A7%91.JPG"
     }
   ]
