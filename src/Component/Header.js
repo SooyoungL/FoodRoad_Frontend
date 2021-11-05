@@ -9,7 +9,7 @@ const HeaderSpace = styled.div`
 `
 
 const Title = styled.div`
-  font-size: 75px;
+  font-size: 85px;
   font-weight: 700;
   color: #532481;
   font-family: 'Bebas Neue', cursive;
@@ -18,7 +18,7 @@ const Title = styled.div`
 export default function Header() {
   return(
     <HeaderSpace>
-        <Link to="/" style={{ textDecoration: 'none' }}><Title>FoodRoad</Title></Link>
+        <Link to="/" style={{ textDecoration: 'none' }}><Title>O J M</Title></Link>
     </HeaderSpace>
   )
 }
